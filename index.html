@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Services Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="header-left">
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="fas fa-building"></i>
+                <span>Community Hub</span>
+            </div>
+        </div>
+        
+        <div class="header-center">
+            <div class="global-search">
+                <input type="text" placeholder="Search anything..." class="search-input">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <!-- Notifications -->
+            <div class="notifications-dropdown">
+                <button class="notification-btn" onclick="toggleNotifications()">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="notifications-panel">
+                    <div class="notifications-header">
+                        <h4>Notifications</h4>
+                        <button class="mark-all-read">Mark all read</button>
+                    </div>
+                    <div class="notifications-list">
+                        <div class="notification-item unread">
+                            <div class="notification-icon transport">
+                                <i class="fas fa-bus"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p><strong>Transport booking approved</strong></p>
+                                <span>Your Route A booking for tomorrow 9:00 AM</span>
+                                <time>2 minutes ago</time>
+                            </div>
+                        </div>
+                        <div class="notification-item unread">
+                            <div class="notification-icon maintenance">
+                                <i class="fas fa-wrench"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p><strong>Maintenance completed</strong></p>
+                                <span>Plumbing issue in Apt 204 resolved</span>
+                                <time>1 hour ago</time>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon system">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p><strong>System maintenance scheduled</strong></p>
+                                <span>Platform will be down for 30 minutes tonight</span>
+                                <time>3 hours ago</time>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notifications-footer">
+                        <a href="#" class="view-all">View all notifications</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- User Menu -->
+            <div class="user-dropdown">
+                <button class="user-avatar" onclick="toggleUserMenu()">
+                    <div class="user-info">
+                        <span class="user-name">John Doe</span>
+                        <span class="user-role">Admin</span>
+                    </div>
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <div class="user-menu">
+                    <a href="#" onclick="viewProfile()">
+                        <i class="fas fa-user"></i> Profile
+                    </a>
+                    <a href="#" onclick="changePassword()">
+                        <i class="fas fa-key"></i> Change Password
+                    </a>
+                    <a href="#" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav-menu">
+                <li class="nav-item" data-roles="admin,employee,guest">
+                    <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-roles="admin,employee">
+                    <a href="#transport" class="nav-link" data-section="transport">
+                        <i class="fas fa-bus"></i>
+                        <span>Transport</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-roles="admin,employee,guest">
+                    <a href="#guesthouse" class="nav-link" data-section="guesthouse">
+                        <i class="fas fa-bed"></i>
+                        <span>Guest House</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-roles="admin,employee">
+                    <a href="#services" class="nav-link" data-section="services">
+                        <i class="fas fa-tools"></i>
+                        <span>Services</span>
+                    </a>
+                </li>
+                
+                <!-- Admin Section -->
+                <li class="nav-section" data-roles="admin">
+                    <div class="section-title">
+                        <i class="fas fa-cog"></i>
+                        <span>Administration</span>
+                    </div>
+                </li>
+                <li class="nav-item" data-roles="admin">
+                    <a href="#overview" class="nav-link" data-section="overview">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <!-- Analytics menu item removed -->
+                <li class="nav-item" data-roles="admin">
+                    <a href="#tickets" class="nav-link" data-section="tickets">
+                        <i class="fas fa-ticket-alt"></i>
+                        <span>Tickets & Approvals</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-roles="admin">
+                    <a href="#workflow" class="nav-link" data-section="workflow">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Workflow Engine</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-roles="admin">
+                    <a href="#team-assignment" class="nav-link" data-section="team-assignment">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Team Assignment</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-roles="admin">
+                    <a href="#integrations" class="nav-link" data-section="integrations">
+                        <i class="fas fa-plug"></i>
+                        <span>Integrations</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-roles="admin">
+                    <a href="#users" class="nav-link" data-section="users">
+                        <i class="fas fa-users"></i>
+                        <span>User Management</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-roles="admin">
+                    <a href="#reports" class="nav-link" data-section="reports">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active" data-roles="admin,employee,guest">
+            <div class="section-header">
+                <h1>Dashboard</h1>
+                <p>Welcome to your Community Services Platform</p>
+            </div>
+            
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="card-icon transport">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Transport Services</h3>
+                        <p>Book buses, track schedules</p>
+                        <div class="card-stats">
+                            <span class="stat">3 Active Bookings</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon guesthouse">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Guest House</h3>
+                        <p>Reserve rooms, manage stays</p>
+                        <div class="card-stats">
+                            <span class="stat">2 Reservations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon services">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Residence Services</h3>
+                        <p>Maintenance requests</p>
+                        <div class="card-stats">
+                            <span class="stat">1 Pending Request</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics dashboard card removed -->
+            </div>
+
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon transport">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>Bus booking confirmed</strong> for Route A - Tomorrow 9:00 AM</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon maintenance">
+                            <i class="fas fa-wrench"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>Plumbing service</strong> completed in Apartment 204</p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon guesthouse">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>Guest room reserved</strong> for visitor John Smith</p>
+                            <span class="activity-time">2 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transport Section -->
+        <section id="transport" class="content-section" data-roles="admin,employee">
+            <div class="section-header">
+                <h1>Transport Services</h1>
+                <p>Book buses and manage your transportation needs</p>
+            </div>
+
+            <div class="transport-tabs">
+                <button class="tab-btn active" data-tab="booking">Book Transport</button>
+                <button class="tab-btn" data-tab="schedule">Schedule</button>
+                <button class="tab-btn" data-tab="mybookings">My Bookings</button>
+            </div>
+
+            <!-- Booking Tab -->
+            <div id="booking" class="tab-content active">
+                <div class="booking-form">
+                    <h3>New Booking</h3>
+                    <form class="form-grid">
+                        <div class="form-group">
+                            <label>From</label>
+                            <select>
+                                <option>Office Campus</option>
+                                <option>Residential Area A</option>
+                                <option>Residential Area B</option>
+                                <option>City Center</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>To</label>
+                            <select>
+                                <option>City Center</option>
+                                <option>Office Campus</option>
+                                <option>Residential Area A</option>
+                                <option>Residential Area B</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" value="2025-10-04">
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <select>
+                                <option>08:00 AM</option>
+                                <option>09:00 AM</option>
+                                <option>10:00 AM</option>
+                                <option>05:00 PM</option>
+                                <option>06:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Passengers</label>
+                            <input type="number" value="1" min="1" max="4">
+                        </div>
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select>
+                                <option>Regular Bus</option>
+                                <option>Express Bus</option>
+                                <option>Shuttle</option>
+                            </select>
+                        </div>
+                    </form>
+                    <button class="btn btn-primary">Book Now</button>
+                </div>
+
+                <div class="available-routes">
+                    <h3>Available Routes</h3>
+                    <div class="routes-grid">
+                        <div class="route-card">
+                            <div class="route-info">
+                                <h4>Route A</h4>
+                                <p>Office Campus ↔ City Center</p>
+                                <span class="route-time">30 min journey</span>
+                            </div>
+                            <div class="route-schedule">
+                                <span>Next: 9:00 AM</span>
+                                <span class="seats">12 seats available</span>
+                            </div>
+                        </div>
+                        <div class="route-card">
+                            <div class="route-info">
+                                <h4>Route B</h4>
+                                <p>Residential Area A ↔ Office</p>
+                                <span class="route-time">25 min journey</span>
+                            </div>
+                            <div class="route-schedule">
+                                <span>Next: 9:15 AM</span>
+                                <span class="seats">8 seats available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schedule Tab -->
+            <div id="schedule" class="tab-content">
+                <div class="schedule-container">
+                    <h3>Bus Schedule</h3>
+                    <div class="schedule-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Route</th>
+                                    <th>Departure</th>
+                                    <th>Arrival</th>
+                                    <th>Duration</th>
+                                    <th>Available Seats</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Route A - Office to City</td>
+                                    <td>08:00 AM</td>
+                                    <td>08:30 AM</td>
+                                    <td>30 min</td>
+                                    <td><span class="seats-available">15</span></td>
+                                    <td><button class="btn btn-sm">Book</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Route B - Residential A</td>
+                                    <td>08:15 AM</td>
+                                    <td>08:40 AM</td>
+                                    <td>25 min</td>
+                                    <td><span class="seats-available">8</span></td>
+                                    <td><button class="btn btn-sm">Book</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Route A - City to Office</td>
+                                    <td>05:30 PM</td>
+                                    <td>06:00 PM</td>
+                                    <td>30 min</td>
+                                    <td><span class="seats-limited">3</span></td>
+                                    <td><button class="btn btn-sm">Book</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Bookings Tab -->
+            <div id="mybookings" class="tab-content">
+                <div class="bookings-container">
+                    <h3>My Bookings</h3>
+                    <div class="bookings-list">
+                        <div class="booking-item confirmed">
+                            <div class="booking-info">
+                                <h4>Route A - Office to City Center</h4>
+                                <p>Tomorrow, Oct 4, 2025 at 9:00 AM</p>
+                                <span class="booking-id">Booking #TR001</span>
+                            </div>
+                            <div class="booking-status">
+                                <span class="status confirmed">Confirmed</span>
+                                <button class="btn btn-sm btn-outline">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="booking-item pending">
+                            <div class="booking-info">
+                                <h4>Route B - Residential A to Office</h4>
+                                <p>Oct 6, 2025 at 8:15 AM</p>
+                                <span class="booking-id">Booking #TR002</span>
+                            </div>
+                            <div class="booking-status">
+                                <span class="status pending">Pending</span>
+                                <button class="btn btn-sm btn-outline">Modify</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guest House Section -->
+        <section id="guesthouse" class="content-section" data-roles="admin,employee,guest">
+            <div class="section-header">
+                <h1>Guest House Services</h1>
+                <p>Reserve rooms and manage guest accommodations</p>
+            </div>
+
+            <div class="guesthouse-tabs">
+                <button class="tab-btn active" data-tab="rooms">Available Rooms</button>
+                <button class="tab-btn" data-tab="reservations">My Reservations</button>
+                <button class="tab-btn" data-tab="visitors">Visitor Management</button>
+            </div>
+
+            <!-- Available Rooms Tab -->
+            <div id="rooms" class="tab-content active">
+                <div class="room-filters">
+                    <div class="filter-group">
+                        <label>Check-in Date</label>
+                        <input type="date" value="2025-10-05">
+                    </div>
+                    <div class="filter-group">
+                        <label>Check-out Date</label>
+                        <input type="date" value="2025-10-07">
+                    </div>
+                    <div class="filter-group">
+                        <label>Room Type</label>
+                        <select>
+                            <option>All Types</option>
+                            <option>Single Room</option>
+                            <option>Double Room</option>
+                            <option>Suite</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary">Search</button>
+                </div>
+
+                <div class="rooms-grid">
+                    <div class="room-card">
+                        <div class="room-image">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="room-details">
+                            <h4>Standard Single Room</h4>
+                            <p>Comfortable single occupancy room with basic amenities</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-wifi"></i> WiFi</span>
+                                <span><i class="fas fa-tv"></i> TV</span>
+                                <span><i class="fas fa-snowflake"></i> AC</span>
+                            </div>
+                            <div class="room-price">₹800/night</div>
+                        </div>
+                        <div class="room-actions">
+                            <span class="availability available">Available</span>
+                            <button class="btn btn-primary">Reserve</button>
+                        </div>
+                    </div>
+
+                    <div class="room-card">
+                        <div class="room-image">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="room-details">
+                            <h4>Deluxe Double Room</h4>
+                            <p>Spacious double occupancy room with premium amenities</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-wifi"></i> WiFi</span>
+                                <span><i class="fas fa-tv"></i> TV</span>
+                                <span><i class="fas fa-snowflake"></i> AC</span>
+                                <span><i class="fas fa-coffee"></i> Mini Bar</span>
+                            </div>
+                            <div class="room-price">₹1200/night</div>
+                        </div>
+                        <div class="room-actions">
+                            <span class="availability limited">2 Left</span>
+                            <button class="btn btn-primary">Reserve</button>
+                        </div>
+                    </div>
+
+                    <div class="room-card">
+                        <div class="room-image">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="room-details">
+                            <h4>Executive Suite</h4>
+                            <p>Luxury suite with separate living area and premium services</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-wifi"></i> WiFi</span>
+                                <span><i class="fas fa-tv"></i> Smart TV</span>
+                                <span><i class="fas fa-snowflake"></i> Climate Control</span>
+                                <span><i class="fas fa-concierge-bell"></i> Room Service</span>
+                            </div>
+                            <div class="room-price">₹2000/night</div>
+                        </div>
+                        <div class="room-actions">
+                            <span class="availability unavailable">Occupied</span>
+                            <button class="btn btn-disabled" disabled>Unavailable</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Reservations Tab -->
+            <div id="reservations" class="tab-content">
+                <div class="reservations-container">
+                    <h3>My Reservations</h3>
+                    <div class="reservations-list">
+                        <div class="reservation-item">
+                            <div class="reservation-info">
+                                <h4>Standard Single Room</h4>
+                                <p>Check-in: Oct 5, 2025 | Check-out: Oct 7, 2025</p>
+                                <p>Guest: John Smith (Visitor)</p>
+                                <span class="reservation-id">Reservation #GH001</span>
+                            </div>
+                            <div class="reservation-status">
+                                <span class="status confirmed">Confirmed</span>
+                                <div class="reservation-actions">
+                                    <button class="btn btn-sm">Modify</button>
+                                    <button class="btn btn-sm btn-outline">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visitor Management Tab -->
+            <div id="visitors" class="tab-content">
+                <div class="visitor-form">
+                    <h3>Register New Visitor</h3>
+                    <form class="form-grid">
+                        <div class="form-group">
+                            <label>Visitor Name</label>
+                            <input type="text" placeholder="Enter visitor name">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="tel" placeholder="Enter phone number">
+                        </div>
+                        <div class="form-group">
+                            <label>Purpose of Visit</label>
+                            <select>
+                                <option>Business Meeting</option>
+                                <option>Training</option>
+                                <option>Conference</option>
+                                <option>Personal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Host Employee</label>
+                            <input type="text" placeholder="Employee name/ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Expected Duration</label>
+                            <select>
+                                <option>1 Day</option>
+                                <option>2-3 Days</option>
+                                <option>1 Week</option>
+                                <option>More than 1 Week</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Security Clearance</label>
+                            <select>
+                                <option>Standard</option>
+                                <option>Enhanced</option>
+                                <option>Restricted Area Access</option>
+                            </select>
+                        </div>
+                    </form>
+                    <button class="btn btn-primary">Register Visitor</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="content-section" data-roles="admin,employee">
+            <div class="section-header">
+                <h1>Residence Services</h1>
+                <p>Request maintenance and home services</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-category">
+                    <div class="category-header">
+                        <i class="fas fa-wrench"></i>
+                        <h3>Plumbing Services</h3>
+                    </div>
+                    <div class="service-items">
+                        <div class="service-item">
+                            <span>Pipe Repair</span>
+                            <button class="btn btn-sm" onclick="openServiceRequestModal('Plumbing - Pipe Repair')">Request</button>
+                        </div>
+                        <div class="service-item">
+                            <span>Drain Cleaning</span>
+                            <button class="btn btn-sm" onclick="openServiceRequestModal('Plumbing - Drain Cleaning')">Request</button>
+                        </div>
+                        <div class="service-item">
+                            <span>Faucet Installation</span>
+                            <button class="btn btn-sm" onclick="openServiceRequestModal('Plumbing - Faucet Installation')">Request</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-category">
+                    <div class="category-header">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Electrical Services</h3>
+                    </div>
+                    <div class="service-items">
+                        <div class="service-item">
+                            <span>Light Fixture Repair</span>
+                            <button class="btn btn-sm" onclick="openServiceRequestModal('Electrical - Light Fixture Repair')">Request</button>
+                        </div>
+                        <div class="service-item">
+                            <span>Socket Installation</span>
+                            <button class="btn btn-sm" onclick="openServiceRequestModal('Electrical - Socket Installation')">Request</button>
+                        </div>
+                        <div class="service-item">
+                            <span>Wiring Issues</span>
+                            <button class="btn btn-sm" onclick="openServiceRequestModal('Electrical - Wiring Issues')">Request</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-category">
+                    <div class="category-header">
+                        <i class="fas fa-hammer"></i>
+                        <h3>Carpentry Services</h3>
+                    </div>
+                    <div class="service-items">
+                        <div class="service-item">
+                            <span>Furniture Repair</span>
+                            <button class="btn btn-sm" onclick="openServiceRequestModal('Carpentry - Furniture Repair')">Request</button>
+                        </div>
+                        <div class="service-item">
+                            <span>Door/Window Fix</span>
+                            <button class="btn btn-sm" onclick="openServiceRequestModal('Carpentry - Door/Window Fix')">Request</button>
+                        </div>
+                        <div class="service-item">
+                            <span>Custom Shelving</span>
+                            <button class="btn btn-sm" onclick="openServiceRequestModal('Carpentry - Custom Shelving')">Request</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-requests">
+                <h3>My Service Requests</h3>
+                <div class="requests-list">
+                    <div class="request-item in-progress">
+                        <div class="request-info">
+                            <h4>Plumbing - Pipe Repair</h4>
+                            <p>Kitchen sink pipe leakage in Apt 204</p>
+                            <span class="request-id">Request #SR001</span>
+                        </div>
+                        <div class="request-status">
+                            <span class="status in-progress">In Progress</span>
+                            <span class="request-date">Oct 2, 2025</span>
+                        </div>
+                    </div>
+                    <div class="request-item completed">
+                        <div class="request-info">
+                            <h4>Electrical - Light Fixture</h4>
+                            <p>Bedroom ceiling light not working</p>
+                            <span class="request-id">Request #SR002</span>
+                        </div>
+                        <div class="request-status">
+                            <span class="status completed">Completed</span>
+                            <span class="request-date">Sep 28, 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Request Modal -->
+            <div id="serviceRequestModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalServiceTitle">Request Service</h3>
+                        <span class="modal-close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="serviceRequestForm" class="service-request-form">
+                            <div class="form-section">
+                                <h4>Service Details</h4>
+                                <div class="form-group">
+                                    <label for="serviceType">Service Type</label>
+                                    <input type="text" id="serviceType" name="serviceType" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="problemDescription">Problem Description *</label>
+                                    <textarea id="problemDescription" name="problemDescription" rows="4" 
+                                              placeholder="Please describe the issue in detail..." required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="urgencyLevel">Urgency Level</label>
+                                    <select id="urgencyLevel" name="urgencyLevel" required>
+                                        <option value="">Select urgency level</option>
+                                        <option value="low">Low - Can wait a few days</option>
+                                        <option value="medium">Medium - Within 24-48 hours</option>
+                                        <option value="high">High - Within 24 hours</option>
+                                        <option value="emergency">Emergency - Immediate attention</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4>Residence Details</h4>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="buildingName">Building/Block *</label>
+                                        <select id="buildingName" name="buildingName" required>
+                                            <option value="">Select building</option>
+                                            <option value="Block A">Block A</option>
+                                            <option value="Block B">Block B</option>
+                                            <option value="Block C">Block C</option>
+                                            <option value="Tower 1">Tower 1</option>
+                                            <option value="Tower 2">Tower 2</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apartmentNumber">Apartment/Unit Number *</label>
+                                        <input type="text" id="apartmentNumber" name="apartmentNumber" 
+                                               placeholder="e.g., 204, A-101" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="residentName">Resident Name *</label>
+                                        <input type="text" id="residentName" name="residentName" 
+                                               placeholder="Your full name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactNumber">Contact Number *</label>
+                                        <input type="tel" id="contactNumber" name="contactNumber" 
+                                               placeholder="Your phone number" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="alternateContact">Alternate Contact</label>
+                                    <input type="tel" id="alternateContact" name="alternateContact" 
+                                           placeholder="Alternate phone number (optional)">
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4>Additional Information</h4>
+                                <div class="form-group">
+                                    <label for="preferredTime">Preferred Service Time</label>
+                                    <select id="preferredTime" name="preferredTime">
+                                        <option value="">No preference</option>
+                                        <option value="morning">Morning (9 AM - 12 PM)</option>
+                                        <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                                        <option value="evening">Evening (4 PM - 7 PM)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="accessInstructions">Access Instructions</label>
+                                    <textarea id="accessInstructions" name="accessInstructions" rows="2" 
+                                              placeholder="Any special instructions for accessing your residence..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" onclick="closeServiceRequestModal()">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Submit Request</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="content-section" data-roles="admin">
+            <div class="section-header">
+                <h1>System Overview</h1>
+                <p>System administration and monitoring</p>
+            </div>
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,247</h3>
+                            <p>Total Users</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>89</h3>
+                            <p>Active Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>23</h3>
+                            <p>Room Reservations</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>15</h3>
+                            <p>Service Requests</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="system-health">
+                    <h3>System Health</h3>
+                    <div class="health-indicators">
+                        <div class="health-item">
+                            <span class="health-label">Transport System</span>
+                            <div class="health-bar">
+                                <div class="health-fill" style="width: 95%"></div>
+                            </div>
+                            <span class="health-status good">95%</span>
+                        </div>
+                        <div class="health-item">
+                            <span class="health-label">Guest House System</span>
+                            <div class="health-bar">
+                                <div class="health-fill" style="width: 88%"></div>
+                            </div>
+                            <span class="health-status good">88%</span>
+                        </div>
+                        <div class="health-item">
+                            <span class="health-label">Service Requests</span>
+                            <div class="health-bar">
+                                <div class="health-fill" style="width: 92%"></div>
+                            </div>
+                            <span class="health-status good">92%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Analytics Section Removed -->
+
+        <!-- Tickets Section -->
+        <section id="tickets" class="content-section" data-roles="admin">
+            <div class="section-header">
+                <h1>Tickets & Approvals</h1>
+                <p>Manage pending requests and approvals</p>
+            </div>
+                <div class="tickets-container">
+                    <div class="tickets-header">
+                        <h3>Pending Approvals & Tickets</h3>
+                        <div class="ticket-filters">
+                            <select id="ticketTypeFilter">
+                                <option value="all">All Types</option>
+                                <option value="registration">User Registration</option>
+                                <option value="transport">Transport Booking</option>
+                                <option value="guesthouse">Guest House</option>
+                                <option value="maintenance">Maintenance Request</option>
+                            </select>
+                            <select id="ticketStatusFilter">
+                                <option value="pending">Pending</option>
+                                <option value="in-review">In Review</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="assigned">Assigned</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="tickets-list">
+                        <!-- User Registration Tickets -->
+                        <div class="ticket-item priority-high" data-ticket="REG001">
+                            <div class="ticket-header">
+                                <div class="ticket-info">
+                                    <h4>Employee Registration - John Smith</h4>
+                                    <span class="ticket-id">Ticket #REG001</span>
+                                    <span class="ticket-type registration">Registration</span>
+                                </div>
+                                <div class="ticket-status">
+                                    <span class="status pending">Pending Approval</span>
+                                    <span class="ticket-date">Oct 3, 2025 - 2:30 PM</span>
+                                </div>
+                            </div>
+                            <div class="ticket-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <strong>Employee ID:</strong> EMP12345
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Department:</strong> Engineering
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Manager:</strong> Sarah Johnson
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Email:</strong> john.smith@company.com
+                                    </div>
+                                </div>
+                                <div class="services-requested">
+                                    <strong>Services Requested:</strong>
+                                    <span class="service-tag">Transport</span>
+                                    <span class="service-tag">Guest House</span>
+                                </div>
+                            </div>
+                            <div class="ticket-actions">
+                                <button class="btn btn-sm btn-success" onclick="approveTicket('REG001')">Approve</button>
+                                <button class="btn btn-sm btn-outline" onclick="rejectTicket('REG001')">Reject</button>
+                                <button class="btn btn-sm" onclick="openTicketDetails('REG001')">View Details</button>
+                            </div>
+                        </div>
+
+                        <!-- Transport Booking Ticket -->
+                        <div class="ticket-item priority-medium" data-ticket="TRN002">
+                            <div class="ticket-header">
+                                <div class="ticket-info">
+                                    <h4>Transport Booking - Route A</h4>
+                                    <span class="ticket-id">Ticket #TRN002</span>
+                                    <span class="ticket-type transport">Transport</span>
+                                </div>
+                                <div class="ticket-status">
+                                    <span class="status approved">Approved</span>
+                                    <span class="ticket-date">Oct 3, 2025 - 1:15 PM</span>
+                                </div>
+                            </div>
+                            <div class="ticket-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <strong>Requested by:</strong> Jane Doe (EMP67890)
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Route:</strong> Office Campus to City Center
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Date/Time:</strong> Oct 4, 2025 - 9:00 AM
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Passengers:</strong> 2
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ticket-actions">
+                                <button class="btn btn-sm" onclick="assignToTeam('TRN002', 'transport')">Assign to Transport Team</button>
+                                <button class="btn btn-sm" onclick="openTicketDetails('TRN002')">View Details</button>
+                            </div>
+                        </div>
+
+                        <!-- Guest Registration Ticket -->
+                        <div class="ticket-item priority-high" data-ticket="GST003">
+                            <div class="ticket-header">
+                                <div class="ticket-info">
+                                    <h4>Guest Registration - Michael Brown</h4>
+                                    <span class="ticket-id">Ticket #GST003</span>
+                                    <span class="ticket-type guesthouse">Guest House</span>
+                                </div>
+                                <div class="ticket-status">
+                                    <span class="status in-review">In Review</span>
+                                    <span class="ticket-date">Oct 3, 2025 - 11:45 AM</span>
+                                </div>
+                            </div>
+                            <div class="ticket-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <strong>Guest Name:</strong> Michael Brown
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Host Employee:</strong> Alice Wilson (EMP54321)
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Purpose:</strong> Business Meeting
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Duration:</strong> 2-3 Days
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Arrival:</strong> Oct 5, 2025
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Organization:</strong> Tech Solutions Inc.
+                                    </div>
+                                </div>
+                                <div class="services-requested">
+                                    <strong>Services Requested:</strong>
+                                    <span class="service-tag">Guest House</span>
+                                    <span class="service-tag">Transport</span>
+                                </div>
+                            </div>
+                            <div class="ticket-actions">
+                                <button class="btn btn-sm btn-success" onclick="approveTicket('GST003')">Approve</button>
+                                <button class="btn btn-sm btn-outline" onclick="rejectTicket('GST003')">Reject</button>
+                                <button class="btn btn-sm" onclick="requestMoreInfo('GST003')">Request Info</button>
+                                <button class="btn btn-sm" onclick="openTicketDetails('GST003')">View Details</button>
+                            </div>
+                        </div>
+
+                        <!-- Maintenance Request Ticket -->
+                        <div class="ticket-item priority-urgent" data-ticket="MNT004">
+                            <div class="ticket-header">
+                                <div class="ticket-info">
+                                    <h4>Plumbing Emergency - Apt 204</h4>
+                                    <span class="ticket-id">Ticket #MNT004</span>
+                                    <span class="ticket-type maintenance">Maintenance</span>
+                                </div>
+                                <div class="ticket-status">
+                                    <span class="status assigned">Assigned</span>
+                                    <span class="ticket-date">Oct 3, 2025 - 9:30 AM</span>
+                                </div>
+                            </div>
+                            <div class="ticket-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <strong>Requested by:</strong> Robert Chen (EMP11111)
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Location:</strong> Residential Area A - Apt 204
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Issue:</strong> Kitchen sink pipe burst
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Assigned to:</strong> Plumbing Team - John Martinez
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ticket-actions">
+                                <button class="btn btn-sm" onclick="updateTicketStatus('MNT004', 'in-progress')">Mark In Progress</button>
+                                <button class="btn btn-sm" onclick="openTicketDetails('MNT004')">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Workflow Section -->
+        <section id="workflow" class="content-section" data-roles="admin">
+            <div class="section-header">
+                <h1>Workflow Engine</h1>
+                <p>Configure and manage approval workflows</p>
+            </div>
+                <div class="workflow-container">
+                    <div class="workflow-header">
+                        <h3>Workflow Engine Configuration</h3>
+                        <button class="btn btn-primary" onclick="openCreateWorkflowModal()">
+                            <i class="fas fa-plus"></i> Create New Workflow
+                        </button>
+                    </div>
+
+                    <!-- Workflow Templates -->
+                    <div class="workflow-templates">
+                        <h4>Workflow Templates</h4>
+                        <div class="templates-grid">
+                            <div class="template-card">
+                                <div class="template-header">
+                                    <h5>Employee Registration Approval</h5>
+                                    <span class="template-status active">Active</span>
+                                </div>
+                                <div class="template-flow">
+                                    <div class="flow-step">
+                                        <span class="step-number">1</span>
+                                        <span class="step-name">HR Review</span>
+                                    </div>
+                                    <i class="fas fa-arrow-right"></i>
+                                    <div class="flow-step">
+                                        <span class="step-number">2</span>
+                                        <span class="step-name">Manager Approval</span>
+                                    </div>
+                                    <i class="fas fa-arrow-right"></i>
+                                    <div class="flow-step">
+                                        <span class="step-number">3</span>
+                                        <span class="step-name">Admin Final</span>
+                                    </div>
+                                </div>
+                                <div class="template-actions">
+                                    <button class="btn btn-sm">Edit</button>
+                                    <button class="btn btn-sm btn-outline">Clone</button>
+                                </div>
+                            </div>
+
+                            <div class="template-card">
+                                <div class="template-header">
+                                    <h5>High-Value Service Request</h5>
+                                    <span class="template-status active">Active</span>
+                                </div>
+                                <div class="template-flow">
+                                    <div class="flow-step">
+                                        <span class="step-number">1</span>
+                                        <span class="step-name">Dept. Head</span>
+                                    </div>
+                                    <i class="fas fa-arrow-right"></i>
+                                    <div class="flow-step">
+                                        <span class="step-number">2</span>
+                                        <span class="step-name">Finance</span>
+                                    </div>
+                                    <i class="fas fa-arrow-right"></i>
+                                    <div class="flow-step">
+                                        <span class="step-number">3</span>
+                                        <span class="step-name">Procurement</span>
+                                    </div>
+                                </div>
+                                <div class="template-actions">
+                                    <button class="btn btn-sm">Edit</button>
+                                    <button class="btn btn-sm btn-outline">Clone</button>
+                                </div>
+                            </div>
+
+                            <div class="template-card">
+                                <div class="template-header">
+                                    <h5>Emergency Maintenance</h5>
+                                    <span class="template-status active">Active</span>
+                                </div>
+                                <div class="template-flow">
+                                    <div class="flow-step">
+                                        <span class="step-number">1</span>
+                                        <span class="step-name">Auto-Approve</span>
+                                    </div>
+                                    <i class="fas fa-arrow-right"></i>
+                                    <div class="flow-step">
+                                        <span class="step-number">2</span>
+                                        <span class="step-name">Assign Team</span>
+                                    </div>
+                                </div>
+                                <div class="template-actions">
+                                    <button class="btn btn-sm">Edit</button>
+                                    <button class="btn btn-sm btn-outline">Clone</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLA Configuration -->
+                    <div class="sla-configuration">
+                        <h4>SLA Management</h4>
+                        <div class="sla-grid">
+                            <div class="sla-card">
+                                <div class="sla-header">
+                                    <h5>Transport Booking</h5>
+                                    <span class="sla-status meeting">Meeting SLA</span>
+                                </div>
+                                <div class="sla-metrics">
+                                    <div class="sla-metric">
+                                        <span class="metric-label">Response Time</span>
+                                        <span class="metric-value">2 hours</span>
+                                    </div>
+                                    <div class="sla-metric">
+                                        <span class="metric-label">Resolution Time</span>
+                                        <span class="metric-value">4 hours</span>
+                                    </div>
+                                    <div class="sla-metric">
+                                        <span class="metric-label">Current Avg</span>
+                                        <span class="metric-value">1.8 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sla-card">
+                                <div class="sla-header">
+                                    <h5>Maintenance Request</h5>
+                                    <span class="sla-status warning">At Risk</span>
+                                </div>
+                                <div class="sla-metrics">
+                                    <div class="sla-metric">
+                                        <span class="metric-label">Response Time</span>
+                                        <span class="metric-value">4 hours</span>
+                                    </div>
+                                    <div class="sla-metric">
+                                        <span class="metric-label">Resolution Time</span>
+                                        <span class="metric-value">24 hours</span>
+                                    </div>
+                                    <div class="sla-metric">
+                                        <span class="metric-label">Current Avg</span>
+                                        <span class="metric-value">22.5 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sla-card">
+                                <div class="sla-header">
+                                    <h5>Guest Registration</h5>
+                                    <span class="sla-status meeting">Meeting SLA</span>
+                                </div>
+                                <div class="sla-metrics">
+                                    <div class="sla-metric">
+                                        <span class="metric-label">Response Time</span>
+                                        <span class="metric-value">1 hour</span>
+                                    </div>
+                                    <div class="sla-metric">
+                                        <span class="metric-label">Resolution Time</span>
+                                        <span class="metric-value">8 hours</span>
+                                    </div>
+                                    <div class="sla-metric">
+                                        <span class="metric-label">Current Avg</span>
+                                        <span class="metric-value">6.2 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Escalation Rules -->
+                    <div class="escalation-rules">
+                        <h4>Escalation Rules</h4>
+                        <div class="rules-list">
+                            <div class="rule-item">
+                                <div class="rule-info">
+                                    <h5>Overdue Approval Escalation</h5>
+                                    <p>If approval pending > 24 hours, escalate to department head</p>
+                                </div>
+                                <div class="rule-status">
+                                    <span class="status active">Active</span>
+                                    <button class="btn btn-sm">Edit</button>
+                                </div>
+                            </div>
+
+                            <div class="rule-item">
+                                <div class="rule-info">
+                                    <h5>High Priority Auto-Route</h5>
+                                    <p>Emergency requests bypass normal approval and go directly to teams</p>
+                                </div>
+                                <div class="rule-status">
+                                    <span class="status active">Active</span>
+                                    <button class="btn btn-sm">Edit</button>
+                                </div>
+                            </div>
+
+                            <div class="rule-item">
+                                <div class="rule-info">
+                                    <h5>Weekend Approval Delegation</h5>
+                                    <p>Weekend requests automatically delegate to on-call approvers</p>
+                                </div>
+                                <div class="rule-status">
+                                    <span class="status inactive">Inactive</span>
+                                    <button class="btn btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create New Workflow Modal -->
+            <div id="createWorkflowModal" class="modal">
+                <div class="modal-content workflow-modal">
+                    <div class="modal-header">
+                        <h3>Create New Workflow</h3>
+                        <span class="modal-close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createWorkflowForm" class="workflow-form">
+                            <!-- Basic Information -->
+                            <div class="form-section">
+                                <h4>Basic Information</h4>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="workflowName">Workflow Name *</label>
+                                        <input type="text" id="workflowName" name="workflowName" 
+                                               placeholder="e.g., Employee Onboarding Approval" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="workflowCategory">Category *</label>
+                                        <select id="workflowCategory" name="workflowCategory" required>
+                                            <option value="">Select category</option>
+                                            <option value="transport">Transport Services</option>
+                                            <option value="guesthouse">Guest House</option>
+                                            <option value="maintenance">Maintenance Services</option>
+                                            <option value="hr">Human Resources</option>
+                                            <option value="finance">Finance & Procurement</option>
+                                            <option value="general">General Approval</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="workflowDescription">Description</label>
+                                    <textarea id="workflowDescription" name="workflowDescription" rows="3" 
+                                              placeholder="Describe the purpose and scope of this workflow..."></textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="workflowPriority">Default Priority</label>
+                                        <select id="workflowPriority" name="workflowPriority">
+                                            <option value="low">Low</option>
+                                            <option value="medium" selected>Medium</option>
+                                            <option value="high">High</option>
+                                            <option value="urgent">Urgent</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="workflowSLA">SLA (Hours)</label>
+                                        <input type="number" id="workflowSLA" name="workflowSLA" 
+                                               placeholder="24" min="1" max="720">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Workflow Steps -->
+                            <div class="form-section">
+                                <div class="section-header-inline">
+                                    <h4>Workflow Steps</h4>
+                                    <button type="button" class="btn btn-sm btn-outline" onclick="addWorkflowStep()">
+                                        <i class="fas fa-plus"></i> Add Step
+                                    </button>
+                                </div>
+                                <div id="workflowSteps" class="workflow-steps">
+                                    <!-- Initial step will be added by JavaScript -->
+                                </div>
+                            </div>
+
+                            <!-- Conditions & Rules -->
+                            <div class="form-section">
+                                <h4>Conditions & Rules</h4>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="autoApprove" name="autoApprove">
+                                        Enable auto-approval for low-value requests
+                                    </label>
+                                </div>
+                                <div class="form-group auto-approve-settings" style="display: none;">
+                                    <label for="autoApproveLimit">Auto-approve limit</label>
+                                    <div class="input-group">
+                                        <span class="input-prefix">₹</span>
+                                        <input type="number" id="autoApproveLimit" name="autoApproveLimit" 
+                                               placeholder="5000" min="0">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="escalationEnabled" name="escalationEnabled">
+                                        Enable escalation for overdue approvals
+                                    </label>
+                                </div>
+                                <div class="form-group escalation-settings" style="display: none;">
+                                    <label for="escalationTime">Escalate after (hours)</label>
+                                    <input type="number" id="escalationTime" name="escalationTime" 
+                                           placeholder="24" min="1" max="168">
+                                </div>
+                            </div>
+
+                            <!-- Notifications -->
+                            <div class="form-section">
+                                <h4>Notification Settings</h4>
+                                <div class="notification-options">
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" id="notifySubmitter" name="notifySubmitter" checked>
+                                            Notify submitter on status changes
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" id="notifyApprovers" name="notifyApprovers" checked>
+                                            Notify approvers on new requests
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" id="notifyManager" name="notifyManager">
+                                            Notify department manager on completion
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" onclick="closeCreateWorkflowModal()">Cancel</button>
+                                <button type="button" class="btn btn-outline" onclick="saveWorkflowDraft()">Save as Draft</button>
+                                <button type="submit" class="btn btn-primary">Create Workflow</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Assignment Section -->
+        <section id="team-assignment" class="content-section" data-roles="admin">
+            <div class="section-header">
+                <h1>Team Assignment</h1>
+                <p>Manage team workload and assignments</p>
+            </div>
+                <div class="team-assignment-container">
+                    <h3>Team Assignment & Management</h3>
+                    
+                    <div class="team-stats">
+                        <div class="team-stat-card">
+                            <h4>Transport Team</h4>
+                            <div class="stat-info">
+                                <span class="stat-number">5</span>
+                                <span class="stat-label">Active Assignments</span>
+                            </div>
+                            <div class="team-members">
+                                <span>Team Lead: David Kumar</span>
+                                <span>Available: 3 members</span>
+                            </div>
+                        </div>
+                        
+                        <div class="team-stat-card">
+                            <h4>Guest House Team</h4>
+                            <div class="stat-info">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">Active Assignments</span>
+                            </div>
+                            <div class="team-members">
+                                <span>Team Lead: Maria Garcia</span>
+                                <span>Available: 2 members</span>
+                            </div>
+                        </div>
+                        
+                        <div class="team-stat-card">
+                            <h4>Maintenance Team</h4>
+                            <div class="stat-info">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">Active Assignments</span>
+                            </div>
+                            <div class="team-members">
+                                <span>Team Lead: Ahmed Hassan</span>
+                                <span>Available: 4 members</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="assignment-queue">
+                        <h4>Assignment Queue</h4>
+                        <div class="queue-list">
+                            <div class="queue-item">
+                                <div class="queue-info">
+                                    <h5>Transport Booking #TRN002</h5>
+                                    <p>Route A booking for Jane Doe - Oct 4, 9:00 AM</p>
+                                </div>
+                                <div class="queue-actions">
+                                    <select class="team-select">
+                                        <option>Select Team Member</option>
+                                        <option>David Kumar (Lead)</option>
+                                        <option>Raj Patel</option>
+                                        <option>Lisa Wong</option>
+                                    </select>
+                                    <button class="btn btn-sm" onclick="assignTicket('TRN002')">Assign</button>
+                                </div>
+                            </div>
+                            
+                            <div class="queue-item">
+                                <div class="queue-info">
+                                    <h5>Guest Registration #GST003</h5>
+                                    <p>Michael Brown - Business meeting, 2-3 days</p>
+                                </div>
+                                <div class="queue-actions">
+                                    <select class="team-select">
+                                        <option>Select Team Member</option>
+                                        <option>Maria Garcia (Lead)</option>
+                                        <option>Priya Sharma</option>
+                                        <option>Tom Wilson</option>
+                                    </select>
+                                    <button class="btn btn-sm" onclick="assignTicket('GST003')">Assign</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="active-assignments">
+                        <h4>Active Assignments</h4>
+                        <div class="assignments-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Ticket ID</th>
+                                        <th>Type</th>
+                                        <th>Assigned To</th>
+                                        <th>Status</th>
+                                        <th>Priority</th>
+                                        <th>Due Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MNT004</td>
+                                        <td>Maintenance</td>
+                                        <td>John Martinez</td>
+                                        <td><span class="status in-progress">In Progress</span></td>
+                                        <td><span class="priority urgent">Urgent</span></td>
+                                        <td>Oct 3, 2025</td>
+                                        <td>
+                                            <button class="btn btn-sm" onclick="viewAssignment('MNT004')">View</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>GST001</td>
+                                        <td>Guest House</td>
+                                        <td>Priya Sharma</td>
+                                        <td><span class="status completed">Completed</span></td>
+                                        <td><span class="priority medium">Medium</span></td>
+                                        <td>Oct 2, 2025</td>
+                                        <td>
+                                            <button class="btn btn-sm" onclick="viewAssignment('GST001')">View</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integrations Section -->
+        <section id="integrations" class="content-section" data-roles="admin">
+            <div class="section-header">
+                <h1>System Integrations</h1>
+                <p>Manage external system connections</p>
+            </div>
+            <div class="integration-grid">
+                <div class="integration-card">
+                    <div class="integration-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="integration-info">
+                        <h3>HR System</h3>
+                        <p>Employee data synchronization</p>
+                        <span class="status connected">Connected</span>
+                    </div>
+                    <button class="btn btn-outline">Configure</button>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="integration-info">
+                        <h3>Security System</h3>
+                        <p>Access control and monitoring</p>
+                        <span class="status connected">Connected</span>
+                    </div>
+                    <button class="btn btn-outline">Configure</button>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="integration-info">
+                        <h3>Finance System</h3>
+                        <p>Budget and expense tracking</p>
+                        <span class="status connected">Connected</span>
+                    </div>
+                    <button class="btn btn-outline">Configure</button>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="integration-info">
+                        <h3>Mobile App</h3>
+                        <p>Offline support needed</p>
+                        <span class="status disconnected">Partial</span>
+                    </div>
+                    <button class="btn btn-primary">Fix</button>
+                </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- User Management Section -->
+        <section id="users" class="content-section" data-roles="admin">
+            <div class="section-header">
+                <h1>User Management</h1>
+                <p>Manage user accounts and permissions</p>
+            </div>
+            <div class="user-management">
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <h3>245</h3>
+                        <p>Total Users</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>189</h3>
+                        <p>Active Users</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>12</h3>
+                        <p>Pending Approvals</p>
+                    </div>
+                </div>
+
+                <div class="user-table">
+                    <div class="user-controls" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+                        <input type="search" placeholder="Search users..." style="padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; width: 300px;">
+                        <button class="btn btn-primary">Add User</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>John Smith</td>
+                                <td>john.smith@company.com</td>
+                                <td>Employee</td>
+                                <td><span class="status active">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm">Edit</button>
+                                    <button class="btn btn-sm btn-outline">Disable</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sarah Johnson</td>
+                                <td>sarah.johnson@company.com</td>
+                                <td>Manager</td>
+                                <td><span class="status active">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm">Edit</button>
+                                    <button class="btn btn-sm btn-outline">Disable</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="content-section" data-roles="admin">
+            <div class="section-header">
+                <h1>Reports & Analytics</h1>
+                <p>Generate and view system reports</p>
+            </div>
+            <div class="reports-grid">
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="report-info">
+                        <h3>Usage Report</h3>
+                        <p>Service utilization statistics</p>
+                        <span class="report-date">Last updated: Today</span>
+                    </div>
+                    <button class="btn btn-primary">Generate</button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="report-info">
+                        <h3>User Activity</h3>
+                        <p>User engagement and activity</p>
+                        <span class="report-date">Last updated: Yesterday</span>
+                    </div>
+                    <button class="btn btn-primary">Generate</button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="report-info">
+                        <h3>Cost Analysis</h3>
+                        <p>Service costs and savings</p>
+                        <span class="report-date">Last updated: This week</span>
+                    </div>
+                    <button class="btn btn-primary">Generate</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
