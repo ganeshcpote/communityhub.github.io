@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Services Platform - Login</title>
+    <link rel="stylesheet" href="login-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Background Elements -->
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <!-- Login Card -->
+        <div class="login-card">
+            <!-- Header -->
+            <div class="login-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <h1>Community Hub</h1>
+                </div>
+                <p class="subtitle">Your unified platform for transport, guest house, and residence services</p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login" class="auth-form active">
+                <h2>Welcome Back</h2>
+                <p class="form-subtitle">Sign in to access your community services</p>
+                
+                <form id="loginForm" class="form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="remember">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </button>
+                </form>
+
+                <!-- Demo Accounts -->
+                <div class="demo-accounts">
+                    <h4>Demo Accounts</h4>
+                    <div class="demo-buttons">
+                        <button class="demo-btn" onclick="loginAsDemo('admin')">
+                            <i class="fas fa-user-shield"></i>
+                            Login as Admin
+                        </button>
+                        <button class="demo-btn" onclick="loginAsDemo('employee')">
+                            <i class="fas fa-user"></i>
+                            Login as Employee
+                        </button>
+                        <button class="demo-btn" onclick="loginAsDemo('guest')">
+                            <i class="fas fa-user-friends"></i>
+                            Login as Guest
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div id="register" class="auth-form">
+                <h2>Create Account</h2>
+                <p class="form-subtitle">Choose your registration type</p>
+
+                <!-- Registration Type Selection -->
+                <div class="registration-type-selector">
+                    <button class="type-btn active" data-type="employee">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Employee</span>
+                        <small>Company staff registration</small>
+                    </button>
+                    <button class="type-btn" data-type="guest">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Guest</span>
+                        <small>Visitor registration</small>
+                    </button>
+                </div>
+
+                <!-- Employee Registration Form -->
+                <div id="employee-registration" class="registration-form active">
+                    <h3>Employee Registration</h3>
+                    <form id="employeeRegForm" class="form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="empId">Employee ID *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-id-badge"></i>
+                                    <input type="text" id="empId" name="employeeId" placeholder="EMP12345" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="empName">Full Name *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="empName" name="fullName" placeholder="John Doe" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="empEmail">Office Email *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="empEmail" name="officeEmail" placeholder="john.doe@company.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="empDept">Department *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-building"></i>
+                                    <select id="empDept" name="department" required>
+                                        <option value="">Select Department</option>
+                                        <option>Engineering</option>
+                                        <option>Human Resources</option>
+                                        <option>Finance</option>
+                                        <option>Operations</option>
+                                        <option>Marketing</option>
+                                        <option>Sales</option>
+                                        <option>IT Support</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="empManager">Manager Name *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user-tie"></i>
+                                    <input type="text" id="empManager" name="managerName" placeholder="Jane Smith" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="empContact">Contact Number *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" id="empContact" name="contactNumber" placeholder="+1 234 567 8900" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="empManagerEmail">Manager Email</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="empManagerEmail" name="managerEmail" placeholder="jane.smith@company.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="empResidential">Residential Area</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-home"></i>
+                                <select id="empResidential" name="residentialArea">
+                                    <option value="">Select if applicable</option>
+                                    <option>Residential Area A</option>
+                                    <option>Residential Area B</option>
+                                    <option>Residential Area C</option>
+                                    <option>Off-Campus</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Services Required</label>
+                            <div class="services-grid">
+                                <label class="service-checkbox">
+                                    <input type="checkbox" name="services" value="transport">
+                                    <span class="checkmark"></span>
+                                    <div class="service-info">
+                                        <i class="fas fa-bus"></i>
+                                        <span>Transport Services</span>
+                                    </div>
+                                </label>
+                                <label class="service-checkbox">
+                                    <input type="checkbox" name="services" value="guesthouse">
+                                    <span class="checkmark"></span>
+                                    <div class="service-info">
+                                        <i class="fas fa-bed"></i>
+                                        <span>Guest House Access</span>
+                                    </div>
+                                </label>
+                                <label class="service-checkbox">
+                                    <input type="checkbox" name="services" value="maintenance">
+                                    <span class="checkmark"></span>
+                                    <div class="service-info">
+                                        <i class="fas fa-tools"></i>
+                                        <span>Residence Services</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i>
+                            Submit Registration
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Guest Registration Form -->
+                <div id="guest-registration" class="registration-form">
+                    <h3>Guest Registration</h3>
+                    <form id="guestRegForm" class="form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guestName">Full Name *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="guestName" name="guestName" placeholder="Michael Brown" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="guestContact">Contact Number *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" id="guestContact" name="guestContact" placeholder="+1 234 567 8900" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guestEmail">Email Address</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="guestEmail" name="guestEmail" placeholder="michael@company.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="guestOrg">Organization</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-building"></i>
+                                    <input type="text" id="guestOrg" name="organization" placeholder="Tech Solutions Inc.">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="visitPurpose">Purpose of Visit *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <select id="visitPurpose" name="visitPurpose" required>
+                                        <option value="">Select purpose</option>
+                                        <option>Business Meeting</option>
+                                        <option>Training/Workshop</option>
+                                        <option>Conference</option>
+                                        <option>Interview</option>
+                                        <option>Personal Visit</option>
+                                        <option>Vendor Meeting</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="visitDuration">Visit Duration *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <select id="visitDuration" name="visitDuration" required>
+                                        <option value="">Select duration</option>
+                                        <option>Half Day</option>
+                                        <option>Full Day</option>
+                                        <option>2-3 Days</option>
+                                        <option>1 Week</option>
+                                        <option>More than 1 Week</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hostEmployee">Host Employee *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user-tie"></i>
+                                    <input type="text" id="hostEmployee" name="hostEmployee" placeholder="Alice Wilson" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="hostEmpId">Host Employee ID</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-id-badge"></i>
+                                    <input type="text" id="hostEmpId" name="hostEmployeeId" placeholder="EMP54321">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hostDept">Host Department *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-building"></i>
+                                    <select id="hostDept" name="hostDepartment" required>
+                                        <option value="">Select department</option>
+                                        <option>Engineering</option>
+                                        <option>Human Resources</option>
+                                        <option>Finance</option>
+                                        <option>Operations</option>
+                                        <option>Marketing</option>
+                                        <option>Sales</option>
+                                        <option>IT Support</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="idProof">ID Proof Type *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-id-card"></i>
+                                    <select id="idProof" name="idProofType" required>
+                                        <option value="">Select ID proof</option>
+                                        <option>Driving License</option>
+                                        <option>Passport</option>
+                                        <option>Aadhar Card</option>
+                                        <option>Voter ID</option>
+                                        <option>Company ID</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="arrivalDate">Expected Arrival *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    <input type="date" id="arrivalDate" name="arrivalDate" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="departureDate">Expected Departure</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar-minus"></i>
+                                    <input type="date" id="departureDate" name="departureDate">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Services Required</label>
+                            <div class="services-grid">
+                                <label class="service-checkbox">
+                                    <input type="checkbox" name="guestServices" value="transport">
+                                    <span class="checkmark"></span>
+                                    <div class="service-info">
+                                        <i class="fas fa-bus"></i>
+                                        <span>Transport Services</span>
+                                    </div>
+                                </label>
+                                <label class="service-checkbox">
+                                    <input type="checkbox" name="guestServices" value="guesthouse">
+                                    <span class="checkmark"></span>
+                                    <div class="service-info">
+                                        <i class="fas fa-bed"></i>
+                                        <span>Guest House</span>
+                                    </div>
+                                </label>
+                                <label class="service-checkbox">
+                                    <input type="checkbox" name="guestServices" value="cafeteria">
+                                    <span class="checkmark"></span>
+                                    <div class="service-info">
+                                        <i class="fas fa-utensils"></i>
+                                        <span>Cafeteria Access</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="guestComments">Additional Comments</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-comment-alt"></i>
+                                <textarea id="guestComments" name="comments" rows="3" placeholder="Any special requirements or additional information"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i>
+                            Submit Registration
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                <p>&copy; 2025 Community Services Platform. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="login-script.js"></script>
+</body>
+</html>
